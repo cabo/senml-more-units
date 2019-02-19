@@ -9,7 +9,7 @@ Expires: August 23, 2019
 
 
                        Additional Units for SenML
-                 draft-bormann-senml-more-units-00pre2
+                 draft-bormann-senml-more-units-00pre3
 
 Abstract
 
@@ -146,7 +146,7 @@ Internet-Draft         Additional Units for SenML          February 2019
       primary unit VA).  It is not presently known to this author how
       the upcoming revision of IEC 80000-6 will update this, but it has
       became clear since that there is strong interest in using this
-      unit for specifically for the imaginary content of complex power,
+      unit specifically for the imaginary content of complex power,
       reactive power [IEEE-1459].
 
    The Joule per meter is not a traditional electromagnetic unit.  It

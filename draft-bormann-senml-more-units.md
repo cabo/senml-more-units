@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-bormann-senml-more-units-00pre2
+docname: draft-bormann-senml-more-units-00pre3
 keyword: Internet-Draft
 cat: std
 pi:
@@ -124,7 +124,7 @@ a small number of alternative units in wide use:
   unit to VA specifically for reactive power (with the primary unit
   VA).  It is not presently known to this author how the upcoming
   revision of IEC 80000-6 will update this, but it has became clear
-  since that there is strong interest in using this unit for
+  since that there is strong interest in using this unit
   specifically for the imaginary content of complex power, reactive
   power {{IEEE-1459}}.
 
