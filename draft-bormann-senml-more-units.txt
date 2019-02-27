@@ -4,12 +4,12 @@
 
 Network Working Group                                         C. Bormann
 Internet-Draft                                   Universitaet Bremen TZI
-Intended status: Standards Track                       February 19, 2019
-Expires: August 23, 2019
+Intended status: Standards Track                       February 27, 2019
+Expires: August 31, 2019
 
 
                        Additional Units for SenML
-                 draft-bormann-senml-more-units-00pre3
+                 draft-bormann-senml-more-units-latest
 
 Abstract
 
@@ -33,7 +33,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 23, 2019.
+   This Internet-Draft will expire on August 31, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Bormann                  Expires August 23, 2019                [Page 1]
+Bormann                  Expires August 31, 2019                [Page 1]
 
 Internet-Draft         Additional Units for SenML          February 2019
 
@@ -71,7 +71,7 @@ Table of Contents
 
 1.  Introduction
 
-   The Sensor Measurement Lists (SenML.  [RFC8428]) media type supports
+   The Sensor Measurement Lists (SenML, [RFC8428]) media type supports
    the indication of a unit, using the SenML field "u", for the quantity
    given as a data value in a SenML record.  For this purpose, SenML
    defines an IANA registry of defined Unit names and their meanings.
@@ -90,14 +90,15 @@ Table of Contents
    +--------+--------------------------------------+-------+-----------+
    | Symbol | Description                          | Type  | Reference |
    +--------+--------------------------------------+-------+-----------+
-   | B      | Byte                                 | float | RFCthis   |
+   | B      | Byte (information content)           | float | RFCthis   |
    |        |                                      |       |           |
-   | VA     | Volt-Ampere (Apparent Power)         | float | RFCthis   |
+   | VA     | volt-ampere (Apparent Power)         | float | RFCthis   |
    |        |                                      |       |           |
-   | var    | Volt-Ampere Reactive (Reactive       | float | RFCthis   |
+   | var    | volt-ampere reactive (Reactive       | float | RFCthis   |
    |        | Power)                               |       |           |
    |        |                                      |       |           |
-   | J/m    | Energy per distance                  | float | RFCthis   |
+   | J/m    | joule per meter (Energy per          | float | RFCthis   |
+   |        | distance)                            |       |           |
    +--------+--------------------------------------+-------+-----------+
 
                   Table 1: New units registered for SenML
@@ -108,8 +109,7 @@ Table of Contents
 
 
 
-
-Bormann                  Expires August 23, 2019                [Page 2]
+Bormann                  Expires August 31, 2019                [Page 2]
 
 Internet-Draft         Additional Units for SenML          February 2019
 
@@ -129,11 +129,11 @@ Internet-Draft         Additional Units for SenML          February 2019
       and related quantities.  While the name octet is associated with
       the symbol o, this is in wide use only in French-speaking
       countries.  Globally more wide-spread is the symbol B for byte,
-      even though B is already taken for bel.  [RFC8428] therefore
-      registers dB as the unit for logarithmic relative power, leaving B
-      free for the usage proposed here.  While this is potentially
-      confusing, the situation is widely understood in engineering
-      circles and is unlikely to cause actual problems.
+      even though B is already taken in SI for bel.  [RFC8428] therefore
+      registers dB as the SenML unit for logarithmic relative power,
+      leaving B free for the usage proposed here.  While this is
+      potentially confusing, the situation is widely understood in
+      engineering circles and is unlikely to cause actual problems.
 
    o  The Volt-Ampere.  [IEC-80000-6]} item 6-57.a defines the VA (volt
       ampere) as a unit for apparent power; items 6-59.a, 6-60.a and
@@ -165,7 +165,7 @@ Internet-Draft         Additional Units for SenML          February 2019
 
 
 
-Bormann                  Expires August 23, 2019                [Page 3]
+Bormann                  Expires August 31, 2019                [Page 3]
 
 Internet-Draft         Additional Units for SenML          February 2019
 
@@ -221,4 +221,4 @@ Author's Address
 
 
 
-Bormann                  Expires August 23, 2019                [Page 4]
+Bormann                  Expires August 31, 2019                [Page 4]
