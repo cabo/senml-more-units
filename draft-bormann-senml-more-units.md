@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-bormann-senml-more-units-00pre3
+docname: draft-bormann-senml-more-units-latest
 keyword: Internet-Draft
 cat: std
 pi:
@@ -18,7 +18,7 @@ pi:
   subcompact: 'no'
 title: Additional Units for SenML
 abbrev: Additional Units for SenML
-date: 2019
+date: 2019-02-27
 author:
 -
   ins: C. Bormann
@@ -72,8 +72,8 @@ IANA registry for Units in SenML.
 # Introduction {#intro}
 
 
-The Sensor Measurement Lists (SenML. {{-senml}}) media type supports the
-indication of a unit,  using the SenML field "u", for the quantity
+The Sensor Measurement Lists (SenML, {{-senml}}) media type supports the
+indication of a unit, using the SenML field "u", for the quantity
 given as a data value in a SenML record.   For this purpose, SenML
 defines an IANA registry of defined Unit names and their meanings.
 
@@ -89,10 +89,10 @@ subregistry of the SenML registry {{IANA.senml}} (as defined in {{RFC8428}}):
 
 | Symbol | Description                           | Type  | Reference |
 |--------|---------------------------------------|-------|-----------|
-| B      | Byte                                  | float | RFCthis   |
-| VA     | Volt-Ampere (Apparent Power)          | float | RFCthis   |
-| var    | Volt-Ampere Reactive (Reactive Power) | float | RFCthis   |
-| J/m    | Energy per distance                   | float | RFCthis   |
+| B      | Byte (information content)            | float | RFCthis   |
+| VA     | volt-ampere (Apparent Power)          | float | RFCthis   |
+| var    | volt-ampere reactive (Reactive Power) | float | RFCthis   |
+| J/m    | joule per meter (Energy per distance) | float | RFCthis   |
 {: #new-unit-tbl title="New units registered for SenML"}
 
 # Rationale
@@ -110,8 +110,8 @@ a small number of alternative units in wide use:
   purpose of giving storage capacity and related quantities.  While
   the name octet is associated with the symbol o, this is in wide use
   only in French-speaking countries.  Globally more wide-spread is the
-  symbol B for byte, even though B is already taken for bel.
-  {{-senml}} therefore registers dB as the unit for logarithmic relative
+  symbol B for byte, even though B is already taken in SI for bel.
+  {{-senml}} therefore registers dB as the SenML unit for logarithmic relative
   power, leaving B free for the usage proposed here.  While this is
   potentially confusing, the situation is widely understood in
   engineering circles and is unlikely to cause actual problems.
