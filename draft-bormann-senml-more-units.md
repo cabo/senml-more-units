@@ -18,7 +18,7 @@ pi:
   subcompact: 'no'
 title: Additional Units for SenML
 abbrev: Additional Units for SenML
-date: 2019-02-27
+date: 2019-03-23
 author:
 -
   ins: C. Bormann
@@ -93,6 +93,7 @@ subregistry of the SenML registry {{IANA.senml}} (as defined in {{RFC8428}}):
 | VA     | volt-ampere (Apparent Power)          | float | RFCthis   |
 | var    | volt-ampere reactive (Reactive Power) | float | RFCthis   |
 | J/m    | joule per meter (Energy per distance) | float | RFCthis   |
+| deg    | degrees (angle)*                      | float | RFCthis   |
 {: #new-unit-tbl title="New units registered for SenML"}
 
 # Rationale
@@ -127,6 +128,10 @@ a small number of alternative units in wide use:
   since that there is strong interest in using this unit
   specifically for the imaginary content of complex power, reactive
   power {{IEEE-1459}}.
+
+The unit "degrees" is unit in wide use in practice for plane angle (as
+in heading, bearing, etc.).  It is marked with an asterisk because the
+preferred coherent SI unit is radian ("rad").
 
 The Joule per meter is not a traditional electromagnetic unit.  It and
 its scaled derivatives (in particular Wh/km) are used to describe the
