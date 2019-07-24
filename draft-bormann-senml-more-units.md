@@ -18,7 +18,7 @@ pi:
   subcompact: 'no'
 title: Additional Units for SenML
 abbrev: Additional Units for SenML
-date: 2019-03-23
+date: 2019-07-24
 author:
 -
   ins: C. Bormann
@@ -33,6 +33,7 @@ author:
 
 normative:
   RFC8428: senml
+  RFC8126: ianacons
   IANA.senml:
   IEC-80000-6:
     title: >
@@ -65,6 +66,8 @@ The Sensor Measurement Lists (SenML) media type supports the
 indication of units for a quantity represented.
 This short document registers a number of additional unit names in the
 IANA registry for Units in SenML.
+It also defines a registry for derived units that cannot be in SenML's
+main registry.
 
 --- middle
 
@@ -81,6 +84,8 @@ This short document registers a number of additional units in the IANA
 registry for Units in SenML that appear to be
 necessary for further adopting SenML in other Standards Development
 Organizations (SDOs).
+
+{::boilerplate bcp14}
 
 # New Units
 
@@ -138,6 +143,45 @@ its scaled derivatives (in particular Wh/km) are used to describe the
 energy expended for achieving motion over a given distance, e.g. as an
 equivalent for electrical cars of the inverse of "mileage".
 
+
+# New Registry
+
+IANA is requested to create a "scaled units"
+subregistry in the SenML registry {{IANA.senml}} defined in
+{{RFC8428}}.
+
+The registry has four columns:
+
+* scaled unit: a newly registered name allocated within the same
+  namespace as SenML units
+* SenML unit: an existing SenML unit from the SenML units registry
+* scale, offset: two rational numbers, expressed in decimal or as a
+  fraction divided by a "/" character.
+
+Quantities expressed in the derived unit can be converted into the
+SenML unit by first multiplying their value with the scale number and
+then adding the offset, yielding the value in the given SenML unit.
+
+| scaled unit | SenML unit |  scale | offset |
+| ms          | s          | 1/1000 |      0 |
+| km          | m          |   1000 |      0 |
+| dBm         | dBW        |      1 |    -30 |
+
+Example: the value of a quantity given as 100 ms is first multiplied
+by 1/1000, yielding the number 0.1, and then the offset 0 is added,
+yielding the number 0.1 again, leading to a quantity of 0.1 s.
+
+New entries can be added to the registration by Expert Review as
+defined in {{RFC8126}}.  Experts should exercise their own good
+judgment, with the same guidelines as used for SenML units (Section
+12.1 of {{RFC8428}}), but without applying the rules 4 and 5.
+
+SenML packs MAY, but SHOULD NOT use scaled units in place of SenML
+units, except in the context of specific data models that are based on
+these scaled units.
+
+\[So does this spec update RFC 8428?]
+
 # Security Considerations {#seccons}
 
 The security considerations of {{-senml}} apply.
@@ -147,7 +191,7 @@ confusion about the proper unit to use.
 
 # IANA Considerations {#iana}
 
-See {{new-units}}.
+See {{new-units}} and {{new-registry}}.
 
 # Acknowledgements {#acks}
 {: numbered="no"}
