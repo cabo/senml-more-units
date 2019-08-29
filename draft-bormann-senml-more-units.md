@@ -18,7 +18,7 @@ pi:
   subcompact: 'no'
 title: Additional Units for SenML
 abbrev: Additional Units for SenML
-date: 2019-07-25
+date: 2019-08-29
 author:
 -
   ins: C. Bormann
@@ -111,6 +111,7 @@ subregistry of the SenML registry {{IANA.senml}} (as defined in {{RFC8428}}):
 | var    | volt-ampere reactive (Reactive Power)          | float | RFCthis   |
 | vars   | volt-ampere reactive seconds (Reactive Energy) | float | RFCthis   |
 | J/m    | joule per meter (Energy per distance)          | float | RFCthis   |
+| kg/m3  | kilograms per cubic meter (mass concentration) | float | RFCthis   |
 | deg    | degrees (angle)*                               | float | RFCthis   |
 {: #new-unit-tbl title="New units registered for SenML"}
 
@@ -168,7 +169,8 @@ The registry has four columns:
 * secondary unit: a newly registered name allocated within the same
   namespace as SenML units
 * SenML unit: an existing SenML unit from the SenML units registry
-* scale, offset: two rational numbers, expressed in decimal or as a
+* scale, offset: two rational numbers, expressed in decimal
+  (optionally, with a decimal exponent given) or as a
   fraction divided by a "/" character.
 
 Quantities expressed in the secondary unit can be converted into the
@@ -177,23 +179,29 @@ then adding the offset, yielding the value in the given SenML unit.
 
 The initial content of the secondary units registry is:
 
-| secondary unit | SenML unit |   scale | offset | Reference |
-| ms             | s          |  1/1000 |      0 | RFCthis   |
-| min            | s          |      60 |      0 | RFCthis   |
-| h              | s          |    3600 |      0 | RFCthis   |
-| kW             | W          |    1000 |      0 | RFCthis   |
-| kVA            | VA         |    1000 |      0 | RFCthis   |
-| kvar           | var        |    1000 |      0 | RFCthis   |
-| Ah             | C          |    3600 |      0 | RFCthis   |
-| Wh             | J          |    3600 |      0 | RFCthis   |
-| kWh            | J          | 3600000 |      0 | RFCthis   |
-| kvar           | var        |    1000 |      0 | RFCthis   |
-| varh           | vars       |    3600 |      0 | RFCthis   |
-| Wh/km          | J/m        |     3.6 |      0 | RFCthis   |
-| KiB            | B          |    1024 |      0 | RFCthis   |
-| mV             | V          |  1/1000 |      0 | RFCthis   |
-| mA             | A          |  1/1000 |      0 | RFCthis   |
-| dBm            | dBW        |       1 |    -30 | RFCthis   |
+| secondary unit | SenML unit |     scale | offset | Reference |
+| ms             | s          |    1/1000 |      0 | RFCthis   |
+| min            | s          |        60 |      0 | RFCthis   |
+| h              | s          |      3600 |      0 | RFCthis   |
+| kW             | W          |      1000 |      0 | RFCthis   |
+| kVA            | VA         |      1000 |      0 | RFCthis   |
+| kvar           | var        |      1000 |      0 | RFCthis   |
+| Ah             | C          |      3600 |      0 | RFCthis   |
+| Wh             | J          |      3600 |      0 | RFCthis   |
+| kWh            | J          |   3600000 |      0 | RFCthis   |
+| kvar           | var        |      1000 |      0 | RFCthis   |
+| varh           | vars       |      3600 |      0 | RFCthis   |
+| Wh/km          | J/m        |       3.6 |      0 | RFCthis   |
+| KiB            | B          |      1024 |      0 | RFCthis   |
+| mV             | V          |    1/1000 |      0 | RFCthis   |
+| mA             | A          |    1/1000 |      0 | RFCthis   |
+| dBm            | dBW        |         1 |    -30 | RFCthis   |
+| ug/m3          | kg/m3      |      1e-9 |      0 | RFCthis   |
+| mm/h           | m/s        | 1/3600000 |      0 | RFCthis   |
+| ppm            | /          |      1e-6 |      0 | RFCthis   |
+| hPa            | Pa         |       100 |      0 | RFCthis   |
+| mm             | m          |    1/1000 |      0 | RFCthis   |
+
 
 Example: the value of a quantity given as 100 ms is first multiplied
 by 1/1000, yielding the number 0.1, and then the offset 0 is added,
