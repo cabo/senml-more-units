@@ -18,7 +18,7 @@ pi:
   subcompact: 'no'
 title: Additional Units for SenML
 abbrev: Additional Units for SenML
-date: 2019-07-24
+date: 2019-07-25
 author:
 -
   ins: C. Bormann
@@ -59,6 +59,17 @@ normative:
     seriesinfo:
       IEEE Std: 1459-2010
     date: 2010-03-19
+informative:
+  RS:
+    title: "Standard-compliant usage of quantities, units and equations"
+    author:
+      org: Rohde&Schwarz
+    seriesinfo:
+      version: 04.00
+    date: 2016-11
+    target:  https://karriere.rohde-schwarz.de/fileadmin/user_upload/Standard-compliant_usage_of_quantities_units_and_equations_bro_en_5214-5061-62_v0400_96dpi.pdf
+
+
 
 --- abstract
 
@@ -66,8 +77,9 @@ The Sensor Measurement Lists (SenML) media type supports the
 indication of units for a quantity represented.
 This short document registers a number of additional unit names in the
 IANA registry for Units in SenML.
-It also defines a registry for derived units that cannot be in SenML's
-main registry.
+It also defines a registry for secondary units that cannot be in SenML's
+main registry as they are derived by linear transformation from units
+already in that registry.
 
 --- middle
 
@@ -92,13 +104,14 @@ Organizations (SDOs).
 IANA is requested to assign new units in the "SenML Units"
 subregistry of the SenML registry {{IANA.senml}} (as defined in {{RFC8428}}):
 
-| Symbol | Description                           | Type  | Reference |
-|--------|---------------------------------------|-------|-----------|
-| B      | Byte (information content)            | float | RFCthis   |
-| VA     | volt-ampere (Apparent Power)          | float | RFCthis   |
-| var    | volt-ampere reactive (Reactive Power) | float | RFCthis   |
-| J/m    | joule per meter (Energy per distance) | float | RFCthis   |
-| deg    | degrees (angle)*                      | float | RFCthis   |
+| Symbol | Description                                    | Type  | Reference |
+|--------+------------------------------------------------+-------+-----------|
+| B      | Byte (information content)                     | float | RFCthis   |
+| VA     | volt-ampere (Apparent Power)                   | float | RFCthis   |
+| var    | volt-ampere reactive (Reactive Power)          | float | RFCthis   |
+| vars   | volt-ampere reactive seconds (Reactive Energy) | float | RFCthis   |
+| J/m    | joule per meter (Energy per distance)          | float | RFCthis   |
+| deg    | degrees (angle)*                               | float | RFCthis   |
 {: #new-unit-tbl title="New units registered for SenML"}
 
 # Rationale
@@ -140,45 +153,65 @@ preferred coherent SI unit is radian ("rad").
 
 The Joule per meter is not a traditional electromagnetic unit.  It and
 its scaled derivatives (in particular Wh/km) are used to describe the
-energy expended for achieving motion over a given distance, e.g. as an
+energy expended for achieving motion over a given distance, e.g., as an
 equivalent for electrical cars of the inverse of "mileage".
 
 
 # New Registry
 
-IANA is requested to create a "scaled units"
+IANA is requested to create a "secondary units"
 subregistry in the SenML registry {{IANA.senml}} defined in
 {{RFC8428}}.
 
 The registry has four columns:
 
-* scaled unit: a newly registered name allocated within the same
+* secondary unit: a newly registered name allocated within the same
   namespace as SenML units
 * SenML unit: an existing SenML unit from the SenML units registry
 * scale, offset: two rational numbers, expressed in decimal or as a
   fraction divided by a "/" character.
 
-Quantities expressed in the derived unit can be converted into the
+Quantities expressed in the secondary unit can be converted into the
 SenML unit by first multiplying their value with the scale number and
 then adding the offset, yielding the value in the given SenML unit.
 
-| scaled unit | SenML unit |  scale | offset |
-| ms          | s          | 1/1000 |      0 |
-| km          | m          |   1000 |      0 |
-| dBm         | dBW        |      1 |    -30 |
+The initial content of the secondary units registry is:
+
+| secondary unit | SenML unit |   scale | offset | Reference |
+| ms             | s          |  1/1000 |      0 | RFCthis   |
+| min            | s          |      60 |      0 | RFCthis   |
+| h              | s          |    3600 |      0 | RFCthis   |
+| kW             | W          |    1000 |      0 | RFCthis   |
+| kVA            | VA         |    1000 |      0 | RFCthis   |
+| kvar           | var        |    1000 |      0 | RFCthis   |
+| Ah             | C          |    3600 |      0 | RFCthis   |
+| Wh             | J          |    3600 |      0 | RFCthis   |
+| kWh            | J          | 3600000 |      0 | RFCthis   |
+| kvar           | var        |    1000 |      0 | RFCthis   |
+| varh           | vars       |    3600 |      0 | RFCthis   |
+| Wh/km          | J/m        |     3.6 |      0 | RFCthis   |
+| KiB            | B          |    1024 |      0 | RFCthis   |
+| mV             | V          |  1/1000 |      0 | RFCthis   |
+| mA             | A          |  1/1000 |      0 | RFCthis   |
+| dBm            | dBW        |       1 |    -30 | RFCthis   |
 
 Example: the value of a quantity given as 100 ms is first multiplied
 by 1/1000, yielding the number 0.1, and then the offset 0 is added,
 yielding the number 0.1 again, leading to a quantity of 0.1 s.
+The value of a quantity given as 10 dBm is first multiplied by 1,
+yielding the number 10, and then the offset -30 is added, yielding the
+number -20, leading to a quantity of -20 dBW.
 
 New entries can be added to the registration by Expert Review as
 defined in {{RFC8126}}.  Experts should exercise their own good
 judgment, with the same guidelines as used for SenML units (Section
 12.1 of {{RFC8428}}), but without applying the rules 4 and 5.
+Guidelines to the difference between units (which can go into the
+registry) and quantities are widely available, see for instance {{RS}}.
 
-SenML packs MAY, but SHOULD NOT use scaled units in place of SenML
-units, except in the context of specific data models that are based on
-these scaled units.
+SenML packs MAY, but SHOULD NOT use secondary units in place of SenML
+units, where the exception of the "SHOULD NOT" lies in the context of
+specific existing data models that are based on these secondary units.
 
 \[So does this spec update RFC 8428?]
 
