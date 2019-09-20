@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-bormann-senml-more-units-latest
+docname: draft-ietf-core-senml-more-units-latest
 keyword: Internet-Draft
 cat: std
 pi:
@@ -18,7 +18,7 @@ pi:
   subcompact: 'no'
 title: Additional Units for SenML
 abbrev: Additional Units for SenML
-date: 2019-08-29
+date: 2019-09-02
 author:
 -
   ins: C. Bormann
